@@ -14,7 +14,7 @@ def download_transcribe_save(URL):
                 break
 
     # Set AssemblyAI API key
-    aai.settings.api_key = ""
+    aai.settings.api_key = st.secrets.aai
 
     # Transcribe audio
     transcriber = aai.Transcriber()
@@ -31,7 +31,7 @@ def download_transcribe_save(URL):
 # Function to generate notes and save to Markdown file
 def generate_notes(transcript_filename):
     # Generate notes
-    genai.configure(api_key='')
+    genai.configure(api_key=st.secrets.ggai)
     model = genai.GenerativeModel('gemini-1.5-pro-latest')
     with open(transcript_filename, "r") as f:
         context = f.read()
